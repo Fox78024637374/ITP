@@ -1,5 +1,7 @@
 package edu.course.lab01;
 
+import java.util.Arrays;
+
 /**
  * Небольшие методы для первой лабораторной работы.
  */
@@ -15,4 +17,49 @@ public final class CourseToolkit {
     public static boolean isEven(int number) {
         return number % 2 == 0;
     }
+
+
+    public static boolean isPrime(int number){
+        if (number < 2) {
+            return false;
+        }
+        for (int i = 2; i * i <= number; i++) {
+            if (number % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+    public static boolean isPalindrome(String text){
+        if (text == null) {
+            throw new IllegalArgumentException();
+        }
+        int l = 0;
+        int r = text.length() - 1;
+        while (l < r) {
+            if (text.charAt(l) != text.charAt(r)) {
+                return false;
+            }
+            l++;
+            r--;
+        }
+        return true;
+    }
+
+
+
+
+    public static double average(int[] values){
+        if (values == null) {
+            throw new IllegalArgumentException();
+        }
+        if (values.length == 0) {
+            throw new IllegalArgumentException();
+        }
+        return Arrays.stream(values).average().orElseThrow();
+    }
+
+    
 }
