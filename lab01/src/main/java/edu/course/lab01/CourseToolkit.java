@@ -1,7 +1,5 @@
 package edu.course.lab01;
 
-import java.util.Arrays;
-
 /**
  * Небольшие методы для первой лабораторной работы.
  */
@@ -51,15 +49,17 @@ public final class CourseToolkit {
 
 
 
-    public static double average(int[] values){
-        if (values == null) {
+    public static double average(int[] values) {
+        if (values == null || values.length == 0) {
             throw new IllegalArgumentException();
         }
-        if (values.length == 0) {
-            throw new IllegalArgumentException();
+
+        int sum = 0;
+        for (int num : values) {
+            sum += num;
         }
-        return Arrays.stream(values).average().orElseThrow();
-    }
+        return (double) sum / values.length;
+        }
 
     
     public static int min(int[] values) {
