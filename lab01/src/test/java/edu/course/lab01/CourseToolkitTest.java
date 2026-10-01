@@ -104,4 +104,100 @@ class CourseToolkitTest {
         assertThrows(IllegalArgumentException.class,
                 () -> CourseToolkit.average(new int[]{}));
     }
+
+    @Test
+    void minReturnsSmallestElement() {
+        assertEquals(1, CourseToolkit.min(new int[]{3, 1, 4, 1, 5, 9, 2, 6}));
+    }
+
+    @Test
+    void minWorksWithSingleElement() {
+        assertEquals(42, CourseToolkit.min(new int[]{42}));
+    }
+
+    @Test
+    void minWorksWhenAllEqual() {
+        assertEquals(7, CourseToolkit.min(new int[]{7, 7, 7, 7}));
+    }
+
+    @Test
+    void minWorksWithNegatives() {
+        assertEquals(-100, CourseToolkit.min(new int[]{-3, -100, -50, 0}));
+    }
+
+    @Test
+    void minFindsElementAtStart() {
+        assertEquals(-5, CourseToolkit.min(new int[]{-5, 10, 20}));
+    }
+
+    @Test
+    void minFindsElementAtEnd() {
+        assertEquals(-5, CourseToolkit.min(new int[]{10, 20, -5}));
+    }
+
+    @Test
+    void minThrowsOnNull() {
+        assertThrows(IllegalArgumentException.class,
+                () -> CourseToolkit.min(null));
+    }
+
+    @Test
+    void minThrowsOnEmpty() {
+        assertThrows(IllegalArgumentException.class,
+                () -> CourseToolkit.min(new int[]{}));
+    }
+
+    @Test
+    void minDoesNotModifyArray() {
+        int[] input = {3, 1, 4, 1, 5};
+        CourseToolkit.min(input);
+        assertArrayEquals(new int[]{3, 1, 4, 1, 5}, input);
+    }
+
+
+    @Test
+    void maxReturnsLargestElement() {
+        assertEquals(9, CourseToolkit.max(new int[]{3, 1, 4, 1, 5, 9, 2, 6}));
+    }
+
+    @Test
+    void maxWorksWithSingleElement() {
+        assertEquals(42, CourseToolkit.max(new int[]{42}));
+    }
+
+    @Test
+    void maxWorksWhenAllEqual() {
+        assertEquals(7, CourseToolkit.max(new int[]{7, 7, 7, 7}));
+    }
+
+    @Test
+    void maxWorksWithNegatives() {
+        assertEquals(0, CourseToolkit.max(new int[]{-3, -100, -50, 0}));
+    }
+
+    @Test
+    void maxFindsElementAtStart() {
+        assertEquals(100, CourseToolkit.max(new int[]{100, 10, 20}));
+    }
+
+    @Test
+    void maxFindsElementAtEnd() {
+        assertEquals(100, CourseToolkit.max(new int[]{10, 20, 100}));
+    }
+
+    @Test
+    void maxThrowsOnNull() {
+        assertThrows(IllegalArgumentException.class,
+                () -> CourseToolkit.max(null));
+    }
+
+    @Test
+    void maxThrowsOnEmpty() {
+        assertThrows(IllegalArgumentException.class,
+                () -> CourseToolkit.max(new int[]{}));
+    }
+
+
+
+
 }

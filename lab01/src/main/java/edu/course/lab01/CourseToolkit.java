@@ -62,4 +62,39 @@ public final class CourseToolkit {
     }
 
     
+    public static int min(int[] values) {
+        if (values == null) {
+            throw new IllegalArgumentException();
+        }
+        if (values.length == 0) {
+            throw new IllegalArgumentException();
+        }
+
+        int result = values[0];
+        for (int i = 1; i < values.length; i++) {
+            if (values[i] < result) {
+                result = values[i];
+            }
+        }
+        return result;
+    }
+
+    public static int max(int[] values) {
+        if (values == null) {
+            throw new IllegalArgumentException();
+        }
+        if (values.length == 0) {
+            throw new IllegalArgumentException();
+        }
+
+        int result = values[0];
+        for (int i = 1; i < values.length; i++) {
+            if (values[i] > result) {
+                result = values[i];
+            }
+        }
+        return result;
+    }
+
+
 }
