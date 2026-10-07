@@ -1,14 +1,14 @@
 package edu.course.lab02;
 
 public class DataSample {
-    private final String id;
+    private final SampleId id;
     private final String label;
     private SampleStatus status;
     private final double[] features;
 
-    public DataSample(String id, String label, SampleStatus status, double[] features) {
-        if (id == null || id.isBlank()) {
-            throw new IllegalArgumentException("id не может быть null или пустым");
+    public DataSample(SampleId id, String label, SampleStatus status, double[] features) {
+        if (id == null) {
+            throw new IllegalArgumentException("id не может быть null");
         }
         if (label == null || label.isBlank()) {
             throw new IllegalArgumentException("label не может быть null или пустым");
@@ -22,16 +22,14 @@ public class DataSample {
         if (features.length == 0) {
             throw new IllegalArgumentException("features не могут быть пустым массивом");
         }
-        
-        
 
         this.id = id;
         this.label = label;
         this.status = status;
-        this.features = features.clone(); 
+        this.features = features.clone();
     }
 
-    public String getId() {
+    public SampleId getId() {
         return id;
     }
 
@@ -44,7 +42,7 @@ public class DataSample {
     }
 
     public double[] getFeatures() {
-        return features.clone(); // чтобы нельзя было изменить внутренний массив
+        return features.clone();
     }
 
     public void changeStatus(SampleStatus newStatus) {
@@ -66,7 +64,6 @@ public class DataSample {
         return sum / features.length;
     }
 
-
     public DataSample normalized(double min, double max) {
         if (!Double.isFinite(min) || !Double.isFinite(max) || max <= min) {
             throw new IllegalArgumentException("min и max должны быть конечными, max > min");
@@ -79,6 +76,4 @@ public class DataSample {
 
         return new DataSample(id, label, status, normalized);
     }
-
-
 }
