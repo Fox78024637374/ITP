@@ -47,9 +47,14 @@ class MeanCenteringNormalizationTest {
     }
 
     @Test
-    void rejectsNullOrEmptyVector() {
+    void handlesEmptyArray() {
+        MeanCenteringNormalization strategy = new MeanCenteringNormalization();
+        assertEquals(0, strategy.normalize(new double[0]).length);
+    }
+
+    @Test
+    void rejectsNullVector() {
         MeanCenteringNormalization strategy = new MeanCenteringNormalization();
         assertThrows(IllegalArgumentException.class, () -> strategy.normalize(null));
-        assertThrows(IllegalArgumentException.class, () -> strategy.normalize(new double[]{}));
     }
 }

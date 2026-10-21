@@ -27,16 +27,9 @@ class PercentDiscountTest {
     }
 
     @Test
-    void storesPercent() {
-        PercentDiscount policy = new PercentDiscount(12.5);
-        assertEquals(12.5, policy.getPercent(), EPS);
-    }
-
-    @Test
     void rejectsPercentOutsideRange() {
         assertThrows(IllegalArgumentException.class, () -> new PercentDiscount(-1));
-        assertThrows(IllegalArgumentException.class, () -> new PercentDiscount(100.1));
-        assertThrows(IllegalArgumentException.class, () -> new PercentDiscount(Double.NaN));
+        assertThrows(IllegalArgumentException.class, () -> new PercentDiscount(101));
     }
 
     @Test

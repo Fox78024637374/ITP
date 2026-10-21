@@ -3,7 +3,7 @@ package edu.course.lab03;
 /**
  * Считает итоговую цену, используя переданную стратегию скидки.
  */
-public final class PriceCalculator {
+public class PriceCalculator {
 
     private final DiscountPolicy discountPolicy;
 

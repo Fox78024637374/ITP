@@ -57,9 +57,14 @@ class ZScoreNormalizationTest {
     }
 
     @Test
-    void rejectsNullOrEmptyVector() {
+    void handlesEmptyArray() {
+        ZScoreNormalization strategy = new ZScoreNormalization();
+        assertEquals(0, strategy.normalize(new double[0]).length);
+    }
+
+    @Test
+    void rejectsNullVector() {
         ZScoreNormalization strategy = new ZScoreNormalization();
         assertThrows(IllegalArgumentException.class, () -> strategy.normalize(null));
-        assertThrows(IllegalArgumentException.class, () -> strategy.normalize(new double[]{}));
     }
 }

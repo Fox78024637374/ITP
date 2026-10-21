@@ -3,13 +3,17 @@ package edu.course.lab03;
 /**
  * Дополнительная стратегия: z-score нормализация
  * {@code (x - mean) / standardDeviation}.
- * Используется генеральное стандартное отклонение (деление на количество значений).
  */
-public final class ZScoreNormalization implements NormalizationStrategy {
+public class ZScoreNormalization implements NormalizationStrategy {
 
     @Override
     public double[] normalize(double[] values) {
-        requireValidVector(values);
+        if (values == null) {
+            throw new IllegalArgumentException("Вектор не может быть null");
+        }
+        if (values.length == 0) {
+            return new double[0];
+        }
 
         double sum = 0.0;
         for (double value : values) {
@@ -17,36 +21,23 @@ public final class ZScoreNormalization implements NormalizationStrategy {
         }
         double mean = sum / values.length;
 
-        double squaredDifferences = 0.0;
+        double variance = 0.0;
         for (double value : values) {
             double difference = value - mean;
-            squaredDifferences += difference * difference;
+            variance += difference * difference;
         }
-        double deviation = Math.sqrt(squaredDifferences / values.length);
+        variance /= values.length;
+        double deviation = Math.sqrt(variance);
 
-        double[] normalized = new double[values.length];
+        double[] result = new double[values.length];
         if (deviation == 0.0) {
             // Все значения одинаковы: стандартное отклонение нулевое.
-            return normalized;
+            return result;
         }
 
         for (int i = 0; i < values.length; i++) {
-            normalized[i] = (values[i] - mean) / deviation;
+            result[i] = (values[i] - mean) / deviation;
         }
-        return normalized;
-    }
-
-    private static void requireValidVector(double[] values) {
-        if (values == null) {
-            throw new IllegalArgumentException("Вектор не может быть null");
-        }
-        if (values.length == 0) {
-            throw new IllegalArgumentException("Вектор не может быть пустым");
-        }
-        for (double value : values) {
-            if (!Double.isFinite(value)) {
-                throw new IllegalArgumentException("Все значения вектора должны быть конечными");
-            }
-        }
+        return result;
     }
 }

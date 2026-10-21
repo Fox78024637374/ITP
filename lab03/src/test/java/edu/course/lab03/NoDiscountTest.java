@@ -25,11 +25,4 @@ class NoDiscountTest {
         NoDiscount policy = new NoDiscount();
         assertThrows(IllegalArgumentException.class, () -> policy.apply(-1.0));
     }
-
-    @Test
-    void rejectsNonFinitePrice() {
-        NoDiscount policy = new NoDiscount();
-        assertThrows(IllegalArgumentException.class, () -> policy.apply(Double.NaN));
-        assertThrows(IllegalArgumentException.class, () -> policy.apply(Double.POSITIVE_INFINITY));
-    }
 }

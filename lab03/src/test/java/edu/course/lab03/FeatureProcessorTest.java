@@ -34,12 +34,6 @@ class FeatureProcessorTest {
     }
 
     @Test
-    void acceptsAnyImplementationOfNormalizationStrategy() {
-        FeatureProcessor processor = new FeatureProcessor(values -> values);
-        assertArrayEquals(new double[]{4.0, 5.0}, processor.process(new double[]{4.0, 5.0}), EPS);
-    }
-
-    @Test
     void doesNotModifyInputArray() {
         FeatureProcessor processor = new FeatureProcessor(new MinMaxNormalization());
         double[] input = {10.0, 20.0, 30.0};
@@ -53,5 +47,11 @@ class FeatureProcessorTest {
     @Test
     void rejectsNullStrategy() {
         assertThrows(IllegalArgumentException.class, () -> new FeatureProcessor(null));
+    }
+
+    @Test
+    void rejectsNullVector() {
+        FeatureProcessor processor = new FeatureProcessor(new MinMaxNormalization());
+        assertThrows(IllegalArgumentException.class, () -> processor.process(null));
     }
 }

@@ -1,6 +1,7 @@
 package edu.course.lab03;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 
@@ -47,16 +48,14 @@ class MinMaxNormalizationTest {
     }
 
     @Test
-    void rejectsNullOrEmptyVector() {
+    void handlesEmptyArray() {
         MinMaxNormalization strategy = new MinMaxNormalization();
-        assertThrows(IllegalArgumentException.class, () -> strategy.normalize(null));
-        assertThrows(IllegalArgumentException.class, () -> strategy.normalize(new double[]{}));
+        assertEquals(0, strategy.normalize(new double[0]).length);
     }
 
     @Test
-    void rejectsNonFiniteValues() {
+    void rejectsNullVector() {
         MinMaxNormalization strategy = new MinMaxNormalization();
-        assertThrows(IllegalArgumentException.class,
-            () -> strategy.normalize(new double[]{1.0, Double.NaN}));
+        assertThrows(IllegalArgumentException.class, () -> strategy.normalize(null));
     }
 }

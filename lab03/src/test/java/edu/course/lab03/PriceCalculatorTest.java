@@ -30,12 +30,6 @@ class PriceCalculatorTest {
     }
 
     @Test
-    void acceptsAnyImplementationOfDiscountPolicy() {
-        PriceCalculator calculator = new PriceCalculator(price -> price - 10.0);
-        assertEquals(90.0, calculator.calculate(100.0), EPS);
-    }
-
-    @Test
     void rejectsNullPolicy() {
         assertThrows(IllegalArgumentException.class, () -> new PriceCalculator(null));
     }

@@ -4,7 +4,7 @@ package edu.course.lab03;
  * Обрабатывает один вектор признаков с помощью переданной стратегии нормализации.
  * Класс не создает стратегию внутри себя и не знает ее конкретный тип.
  */
-public final class FeatureProcessor {
+public class FeatureProcessor {
 
     private final NormalizationStrategy normalizationStrategy;
 
@@ -16,6 +16,11 @@ public final class FeatureProcessor {
     }
 
     public double[] process(double[] values) {
-        return normalizationStrategy.normalize(values);
+        if (values == null) {
+            throw new IllegalArgumentException("Вектор не может быть null");
+        }
+        // Копия защищает исходный массив от изменений внутри стратегии.
+        double[] safeInput = values.clone();
+        return normalizationStrategy.normalize(safeInput);
     }
 }

@@ -8,7 +8,7 @@ public interface NormalizationStrategy {
     /**
      * Возвращает новый нормализованный вектор, не изменяя исходный массив.
      *
-     * @param values исходный вектор, не null и не пустой
+     * @param values исходный вектор, не null; пустой массив возвращается пустым
      * @return новый массив с нормализованными значениями
      */
     double[] normalize(double[] values);
