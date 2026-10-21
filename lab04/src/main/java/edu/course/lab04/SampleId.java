@@ -1,7 +1,5 @@
 package edu.course.lab04;
 
-import java.util.Objects;
-
 /**
  * Неизменяемый ключ наблюдения: имя набора данных и номер наблюдения.
  * Оба поля участвуют и в {@link #equals(Object)}, и в {@link #hashCode()}.
@@ -35,16 +33,19 @@ public final class SampleId {
         if (this == other) {
             return true;
         }
-        if (!(other instanceof SampleId sampleId)) {
+        if (!(other instanceof SampleId)) {
             return false;
         }
+        SampleId sampleId = (SampleId) other;
         return observationNumber == sampleId.observationNumber
             && datasetName.equals(sampleId.datasetName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(datasetName, observationNumber);
+        int result = datasetName.hashCode();
+        result = 31 * result + observationNumber;
+        return result;
     }
 
     @Override

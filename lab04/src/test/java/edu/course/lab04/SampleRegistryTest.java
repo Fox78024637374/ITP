@@ -147,9 +147,10 @@ class SampleRegistryTest {
             if (this == other) {
                 return true;
             }
-            if (!(other instanceof CollidingKey key)) {
+            if (!(other instanceof CollidingKey)) {
                 return false;
             }
+            CollidingKey key = (CollidingKey) other;
             return value.equals(key.value);
         }
 
@@ -180,9 +181,10 @@ class SampleRegistryTest {
             if (this == other) {
                 return true;
             }
-            if (!(other instanceof MutableKey key)) {
+            if (!(other instanceof MutableKey)) {
                 return false;
             }
+            MutableKey key = (MutableKey) other;
             return id == key.id;
         }
 

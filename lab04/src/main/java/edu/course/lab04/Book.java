@@ -1,7 +1,5 @@
 package edu.course.lab04;
 
-import java.util.Objects;
-
 /**
  * Неизменяемая книга. Логическое равенство определяется только ISBN:
  * у двух экземпляров с одинаковым ISBN может быть разное название,
@@ -36,15 +34,16 @@ public final class Book {
         if (this == other) {
             return true;
         }
-        if (!(other instanceof Book book)) {
+        if (!(other instanceof Book)) {
             return false;
         }
+        Book book = (Book) other;
         return isbn.equals(book.isbn);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(isbn);
+        return isbn.hashCode();
     }
 
     @Override
